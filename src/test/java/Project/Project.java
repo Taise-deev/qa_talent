@@ -21,6 +21,7 @@ public class Project {
     private WebDriver driver;
     private WebDriverWait wait;
 
+  //estou usando FindBy para guardar os elementos.
     @FindBy(css = ".login")
     private WebElement btnLogin;
 
@@ -84,8 +85,10 @@ public class Project {
     @FindBy(xpath = "//p[contains(text(),'Welcome to your account.')]")
     private WebElement minhaConta;
 
-    private static final String textoAleatorio = UUID.randomUUID().toString().substring(0, 6);
+// utilizando uma variavel que recebe uma string aleatória.
+   public  String textoAleatorio = UUID.randomUUID().toString().substring(0, 6);
 
+    //no before esta inicializando o chrome e fazendo a configuração da tela.
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Tialison\\Desktop\\drivers\\chromedriver.exe");
@@ -95,7 +98,7 @@ public class Project {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
-
+// dentro do test estou realizando ações, utilizando os próprios métodos do selenium.
     @Test
     public void criarLogin() {
         btnLogin.click();
@@ -130,11 +133,10 @@ public class Project {
         System.out.println(texto);
 
     }
-
+//  após a realização do test o After fecha o meu broswer.
     @After
     public void fecharBroswer() {
         driver.quit();
     }
-
 
 }
