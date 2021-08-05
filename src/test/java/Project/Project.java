@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -98,45 +97,61 @@ public class Project {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
-// dentro do test estou realizando ações, utilizando os próprios métodos do selenium.
+// dentro do test estou realizando ações para preencher todos os campos obrigatórios, utilizando os próprios métodos do selenium.
     @Test
     public void criarLogin() {
         btnLogin.click();
+
         inputEmail.sendKeys(textoAleatorio + "@test.com");
+
         btnCriar.click();
+
         radioTitle.click();
+
         nome.sendKeys("Taise");
+
         sobrenome.sendKeys("Silva");
+
         password.sendKeys("123456");
+
         Select select = new Select(diaNascimento);
         select.selectByValue("1");
+
         Select select1 = new Select(mesNascimento);
         select1.selectByValue("1");
+
         Select select2 = new Select(anoNascimento);
         select2.selectByValue("1998");
+
         selecionar.click();
+
         nomeEndereco.sendKeys("Taise");
+
         sobrenomeEndereco.sendKeys("Silva");
+
         endereco.sendKeys("735 Anacapa Street");
+
         cidade.sendKeys("Santa Barbara");
+
         Select select3 = new Select(estado);
         select3.selectByValue("5");
+
         cep.sendKeys("93101");
+
         Select select4 = new Select(pais);
         select4.selectByValue("21");
+
         celular.sendKeys("989736394");
+
         btnregistro.click();
 
         String texto = minhaConta.getText().substring(0, 24);
 
         Assert.assertEquals(texto, "Welcome to your account.");
-        System.out.println(texto);
-
     }
 //  após a realização do test o After fecha o meu broswer.
     @After
     public void fecharBroswer() {
         driver.quit();
     }
-
 }
